@@ -9,14 +9,14 @@ const bodyParser = require('body-parser')
 var PORT = process.env.PORT || 3000;
 var app = express();
 
-app.use(serveStatic('dist', { 'index': ['index.html'] }));
+app.use(serveStatic('.', { 'index': ['index.html'] }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/customers/:id', function(req, res) {
     // request.get('http://40.112.60.136:8080/customers/1', function(error, response, body) {
-    request.get('http://3.88.22.161:8081/customers/1', function(error, response, body) {
+    request.get('http://localhost:8071/customers/1', function(error, response, body) {
         // console.log('error:', error);
         // console.log('statusCode:', response && response.statusCode);
         // console.log('reqParams:', req.params);
@@ -27,7 +27,7 @@ app.get('/customers/:id', function(req, res) {
 
 app.post('/processPayment', function(req, res) {
     // request.post('http://52.170.188.7:8080/processPayment', {
-    request.post('http://3.88.22.161:8084/processPayment', {
+    request.post('http://localhost:8074/processPayment', {
         body: JSON.stringify(req.body)}, function(error, response, body) {
         // console.log('error:', error);
         // console.log('statusCode:', response && response.statusCode);
@@ -39,7 +39,7 @@ app.post('/processPayment', function(req, res) {
 
 app.post('/orders', function(req, res) {
     // request.post('http://168.62.48.212:8080/orders',{
-    request.post('http://3.88.22.161:8083/orders',{
+    request.post('http://localhost:8073/orders',{
         body: JSON.stringify(req.body)}, function(error, response, body) {
         // console.log('error:', error);
         // console.log('statusCode:', response && response.statusCode);
